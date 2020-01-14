@@ -1,0 +1,32 @@
+﻿@*@model List<Google.Apis.YouTube.v3.Data.SearchResult>*@
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    ViewBag.Title = "SearchList";
+}
+
+<h2>SearchList</h2>
+
+<input type="text" class="form-control" id="Search" placeholder="busca" />
+<a class="btn btn-default" href="javascript:void(0)" onclick="btnSearch()">Search</a>
+
+<div class="container" id="ListYoutube">
+
+</div>
+
+<script>
+    function btnSearch() {
+        $.ajax(
+            {
+                url: '@Url.Action("SearchList","Youtube")?SearchWord=' + $('#Search').val(),
+                type: 'GET',
+                success: function (result) {
+                    $('#ListYoutube').html(result);
+                }
+            });
+    }
+</script>
