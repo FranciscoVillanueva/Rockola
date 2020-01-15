@@ -1,16 +1,30 @@
 ﻿@model List<Google.Apis.YouTube.v3.Data.SearchResult>
 
-@foreach (var item in Model)
+@for (int i = 0; i < Model.Count; i++)
 {
-    @item.Snippet.Title <br />
-    <img class="img-responsive" src="http://img.youtube.com/vi/@item.Id.VideoId/mqdefault.jpg" alt="@item.Snippet.Title">
+    @Model[i].Snippet.Title <br />
+    <img onclick="btnPlay('@Model[i].Id.VideoId')" class="img-responsive" src="http://img.youtube.com/vi/@Model[i].Id.VideoId/mqdefault.jpg" alt="@Model[i].Snippet.Title">  
     <br />
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/@item.Id.VideoId" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <input id=i type="hidden" value="@Model[i].Id.VideoId" />
+    <button onclick="btnAdd('@Model')"> add</button>
+    @*<iframe width="560" height="315" src="https://www.youtube.com/embed/@Model[i].Id.VideoId" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>*@
     <br />
-    @*@item.Snippet.LiveBroadcastContent <br />
-        @item.Snippet.Thumbnails <br />
-        @item.Snippet.Description <br />*@
 }
 
+@*@foreach (var item in Model)
+    {*@
+@*@item.Snippet.Title <br />
+    <img class="img-responsive" src="http://img.youtube.com/vi/@item.Id.VideoId/mqdefault.jpg" alt="@item.Snippet.Title">
+    <br />*@
+@*<a href="@Url.Action("AddToPlayList", "Youtube",new {IdVideo = @item.Id.VideoId})" > agregame</a>*@
+@*<input id="1" type="hidden" value="@item.Id.VideoId"/>
+    <p onclick="btnAdd($("#@item.Id.VideoId").val())"> add</p>*@
+@*<p onclick="btnAdd(2)"> add</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/@item.Id.VideoId" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br />*@
+@*@item.Snippet.LiveBroadcastContent <br />
+    @item.Snippet.Thumbnails <br />
+    @item.Snippet.Description <br />*@
+@*}*@
 
 

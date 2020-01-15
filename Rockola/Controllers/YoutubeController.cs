@@ -33,5 +33,18 @@ namespace Rockola.Controllers
 
             return PartialView("Lista",SearchListResponse.Items);
         }
+        //https://developers.google.com/youtube/iframe_api_reference
+
+        [HttpGet]
+        public ActionResult AddToPlayList(Google.Apis.YouTube.v3.Data.SearchResult IdVideo)
+        {
+            return PartialView("AddPlay",IdVideo);
+        }
+
+        [HttpGet]
+        public ActionResult Play(string IdVideo)
+        {
+            return PartialView("Play", IdVideo);
+        }
     }
 }

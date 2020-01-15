@@ -14,10 +14,15 @@
 <input type="text" class="form-control" id="Search" placeholder="busca" />
 <a class="btn btn-default" href="javascript:void(0)" onclick="btnSearch()">Search</a>
 
+<div id="play">
+
+</div>
+
 <div class="container" id="ListYoutube">
 
 </div>
 
+@*https://developers.google.com/youtube/iframe_api_reference*@
 <script>
     function btnSearch() {
         $.ajax(
@@ -28,5 +33,24 @@
                     $('#ListYoutube').html(result);
                 }
             });
+    }
+
+    function btnAdd(Video) {
+        $.ajax(
+            {
+                url: '@Url.Action("AddToPlayList","Youtube")?IdVideo=' + Video,
+                type: 'GET'
+            });
+    }
+
+    function btnPlay(Id) {
+        $.ajax(
+            {
+                url: '@Url.Action("Play","Youtube")?IdVideo=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    $('#play').html(result);
+                }
+            });      
     }
 </script>
