@@ -1,4 +1,4 @@
-﻿@*@model List<Google.Apis.YouTube.v3.Data.SearchResult>*@
+﻿
 @{
     ViewBag.Title = "Index";
 }
@@ -21,7 +21,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-4">
             <div class="input-group">
                 <input type="text" style="background-color: #737373; color:white" class="form-control" id="Search" />
                 <div class="input-group-btn">
@@ -29,13 +29,13 @@
                 </div>
             </div>
             <br />
-            <div class="container" id="ListFoundYoutubeVideos"></div>
+            <div style="display:none" class="container" id="ListFoundYoutubeVideos"></div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-8">
             <div id="player"></div>
         </div>
     </div>
-    <div class="row">
+    <div style="display:none" class="row" id="BlockPlaylist">
         <h2>Playlist</h2>
         <div style="width:100%;position:center;overflow-x:scroll">
             <table>
@@ -50,6 +50,7 @@
 <script>
 
     function btnSearch() {
+        $('#ListFoundYoutubeVideos').show();
         $.ajax(
             {
                 url: '@Url.Action("SearchList","Youtube")?SearchWord=' + $('#Search').val(),

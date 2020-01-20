@@ -36,29 +36,29 @@ namespace Rockola.Controllers
         }
         //https://developers.google.com/youtube/iframe_api_reference
 
-        [HttpGet]
-        public ActionResult AddToPlayList(string IdVideo)
-        {
-            Declare();
-            List<string> ListVideosId = (List<string>)Session["Playlist"];
-            ListVideosId.Add(IdVideo);
-            Session["Playlist"] = ListVideosId;
-            return PartialView("Playlist", ListVideosId);
-        }
+        //[HttpGet]
+        //public ActionResult AddToPlayList(string IdVideo)
+        //{
+        //    Declare();
+        //    List<string> ListVideosId = (List<string>)Session["Playlist"];
+        //    ListVideosId.Add(IdVideo);
+        //    Session["Playlist"] = ListVideosId;
+        //    return PartialView("Playlist", ListVideosId);
+        //}
 
-        [HttpGet]
-        public ActionResult Play(string IdVideo)
-        {
-            return PartialView("Play", IdVideo);
-        }
+        //[HttpGet]
+        //public ActionResult Play(string IdVideo)
+        //{
+        //    return PartialView("Play", IdVideo);
+        //}
 
-        public void Declare()
-        {
-            List<string> PlayListIds = new List<string>();
-            if (Session["Playlist"] == null)
-            {
-                Session["Playlist"] = PlayListIds;
-            }
-        }
+        //public void Declare()
+        //{
+        //    List<string> PlayListIds = new List<string>();
+        //    if (Session["Playlist"] == null)
+        //    {
+        //        Session["Playlist"] = PlayListIds;
+        //    }
+        //}
     }
 }

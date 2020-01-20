@@ -4,8 +4,8 @@
 {
     @Model[i].Snippet.Title <br />
     <img onclick="btnPlay('@Model[i].Id.VideoId')" class="img-responsive" src="http://img.youtube.com/vi/@Model[i].Id.VideoId/mqdefault.jpg" alt="@Model[i].Snippet.Title">
-    <button class="btn btn-default" onclick="player.destroy(); onYouTubeIframeAPIReady('@Model[i].Id.VideoId')"> Play </button>
-    <button class="btn btn-default" onclick="addToPlayList('@Model[i].Id.VideoId','@Model[i].Snippet.Thumbnails.Default__.Url')">Add to playlist</button>
+    <button class="btn btn-default btn-sm" onclick="player.destroy(); onYouTubeIframeAPIReady('@Model[i].Id.VideoId')"> Play </button>
+    <button class="btn btn-default btn-sm" onclick="addToPlayList('@Model[i].Id.VideoId','@Model[i].Snippet.Thumbnails.Default__.Url')">Add to playlist</button>
     <br /> <br />
 }
 
@@ -56,7 +56,7 @@
         if (event.data == YT.PlayerState.ENDED && !done) {
             //reproducir 1er video de la cola
             playListContainer = document.getElementById('playList');
-            var nextVideoToPlay = playListContainer.children[0];
+            //var nextVideoToPlay = playListContainer.children[0];
             videoStopped = true;
             playQueue();
         }
@@ -74,11 +74,24 @@
             var img = document.createElement('img');
             img.src = videoImageURL;
             img.alt = videoId;
-            img.width = 190;
+            img.width = 140;
             cel.append(img);
         } else {
             player.destroy();
             onYouTubeIframeAPIReady(videoId);
+        }
+        HideShowPlayList(); 
+    }
+
+    function HideShowPlayList() {
+        playListContainer = document.getElementById('playList');
+        if (playListContainer.children.length == 0) {
+            $('#BlockPlaylist').hide();
+            console.log('cero');
+        }
+        else {
+            console.log('no es cero')
+            $('#BlockPlaylist').show();
         }
     }
 
@@ -88,6 +101,7 @@
         var videoId = firstVideo.alt;
         firstCell.remove();
         player.destroy();
+        HideShowPlayList();
         onYouTubeIframeAPIReady(videoId);
     }
 
@@ -101,10 +115,10 @@
         border-width: 4px;
     }
 
-    .myImage {
+    /*.myImage {
         max-width: 100%;
         max-height: 100%;
         margin: auto;
         display: block;
-    }
+    }*/
 </style>
